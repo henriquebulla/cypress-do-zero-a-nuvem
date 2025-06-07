@@ -60,3 +60,57 @@ Cypress.Commands.add('limparCampoNomeSobrenomeEmail', () => {
       .clear()
 })
 
+Cypress.Commands.add('selecionarProduto', (produto) => {
+  cy.get('select[id="product"]')
+    .select(produto)
+    .should('have.value', produto)
+})
+
+Cypress.Commands.add('selecionarProdutoPorIndice', (indice, produto) => {
+    cy.get('select[id="product"]')
+    .select(indice)
+    .should('have.value', produto)
+})
+
+Cypress.Commands.add('selecionarProdutoPorIndice', (indice, produto) => {
+    cy.get('select[id="product"]')
+      .select(indice)
+      .should('have.value', produto)
+})
+
+Cypress.Commands.add('selecionarTipoDeAtendimento', (tipoAtendimento) => {
+    cy.get('[type="radio"]')
+      .check(tipoAtendimento)
+      .should('be.checked')
+})
+
+Cypress.Commands.add('selecionarContatoPreferencial', (tipoContato) => {
+    cy.get('[type="checkbox"]')
+      .check(tipoContato)
+      .should('be.checked')
+})
+
+Cypress.Commands.add('removerSelecaoUltimoCheckbox', () => {
+  cy.get('[type="checkbox"]')
+    .last()
+    .uncheck()
+    .should('not.be.checked')
+})
+
+Cypress.Commands.add('selecionarArquivo', () => {
+  cy.get('input[type="file"]')
+    .selectFile('cypress/fixtures/example.json')
+    .should('have.value', 'C:\\fakepath\\example.json')
+})
+
+Cypress.Commands.add('selecionarArquivoDragAndDrop', () => {
+  cy.get('input[type="file"]')
+    .selectFile('cypress/fixtures/example.json', { action: 'drag-drop' })
+    .should('have.value', 'C:\\fakepath\\example.json')
+})
+
+Cypress.Commands.add('validarPoliticaDePrivacidade', () => {
+  cy.get('a[href="privacy.html"]')
+    .should('have.attr', 'target', '_blank')
+  
+})
